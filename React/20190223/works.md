@@ -65,3 +65,29 @@ module.exports = {
 
 以下は参考にしました。
 https://dackdive.hateblo.jp/entry/2016/05/07/183335
+
+# 思ったこと
+apacheの設定とかいろいろあるんですが、画像系は全部 `images` というディレクトリを作ってしまって良い。
+webpack-dev-serverのpublicPathとか設定しなおすことなく、ルートディレクトリ（が、デプロイしたときに、 `google.co.jp/hoge_a` にあたる）の直下に `images` があることにより、ちゃんとパスを見てくれる。辛くない。
+
+### jsx
+```jsx
+class Test extends Component {
+  render() {
+    return (
+      <img src="./images/sample.jpg"/>
+    )
+  }
+}
+```
+
+### 構成
+```
+root
+ └─ hoge_a
+      ├─ src  ── main.js
+      ├─ dist ── bundle.js
+      ├─ images ── sample.jpg
+      ├─ index.html / index.php
+      └─ .htaccess 
+```
