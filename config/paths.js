@@ -62,7 +62,7 @@ const resolveModule = (resolveFn, filePath) => {
     return resolveFn(`${filePath}.${extension}`);
   }
 
-  return resolveFn(`${filePath}.js`);
+  return resolveFn(`${filePath}.jsx`);
 };
 
 // config after eject: we're in ./config/
