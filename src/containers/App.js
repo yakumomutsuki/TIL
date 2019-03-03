@@ -1,21 +1,20 @@
-import {connect
-} from 'react-redux'
+import {connect} from 'react-redux'
 import App from '../components/App.jsx'
-import {addTask,inputTask} from '../actions/tasks'
+import {addTask, inputTask} from '../actions/tasks'
 
-const mapStateToProps = ({ task, tasks }) => {
+const mapStateToProps = ({task, tasks}) => {
     return {
         task,
         tasks
     }
 };
 
-const mapDispatchToProps = (dispatch) =>{
+const mapDispatchToProps = (dispatch) => {
     return {
-        addTask(task){
+        addTask(task) {
             dispatch(addTask(task))
         },
-        inputTask(task){
+        inputTask(task) {
             dispatch(inputTask(task))
         }
     }
