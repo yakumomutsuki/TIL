@@ -1,8 +1,25 @@
-import {createStore} from "redux";
+import {
+    createStore as reduxCreateStore,
+    combineReducers,
+    compose,
+    applyMiddleware
+} from "redux";
+import {routerMiddleware, connectRouter} from 'connected-react-router'
 import {taskReducer} from "./reducers/tasks";
 
-export const store = createStore(
-    taskReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const reducer = (history) => combineReducers({
+    router: connectRouter(history),
+    reducers : taskReducer
+});
+
+export const createStore = (history) => {
+    return reduxCreateStore(
+        reducer(history),
+        compose(
+            applyMiddleware(
+                routerMiddleware(history)
+            )
+        )
+    )
+};
 
