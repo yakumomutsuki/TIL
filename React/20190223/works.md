@@ -81,6 +81,38 @@ class Test extends Component {
 }
 ```
 
+### 19/3/26 追記
+file-loaderを入れてやると、うまい感じになる。
+```jsx
+import React from 'react'
+import sampleImg from '../../images/sample.jpg' // パスの指定は、imagesに向くように指定
+
+class Test extends React.Component {
+  render() {
+    return (
+      <img src={sampleImg}/>
+    )
+  }
+}
+```
+
+`webpack.config.js`
+```
+{
+// file-loader
+ test: /\.(png|jpg|gif)$/,
+ use: [
+     {
+         loader: 'file-loader',
+         options: {
+             name: '[path][name].[ext]',
+             publicPath: '/xxx'
+         }
+     }
+ ]
+}
+```
+
 ### 構成
 ```
 root
