@@ -1,29 +1,47 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
+} from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
+  state = {
+    newTodo : '',
+    todos :[],
+
+  };
+
+  onChangeText(newTodo){
+    this.setState({ newTodo })
+  }
+
+  onPressAdd(){
+    const { newTodo } = this.state;
+    this.setState({
+        newTodo : newTodo,
+        todos : [newTodo, ...this.state.todos]
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <TextInput
+          value={this.state.newTodo}
+          style={styles.form}
+          onChangeText={text => this.onChangeText(text)}
+        />
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={ () => this.onPressAdd()}
+        >
+          <Text style={styles.addButtonText}>ADD</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -32,18 +50,20 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    padding:30,
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  form: {
+    backgroundColor: '#EEE',
+    padding: 10,
   },
-  instructions: {
+  addButton: {
+    backgroundColor: '#333',
+    padding: 14,
+    borderRadius: 4,
+    marginTop : 10
+  },
+  addButtonText: {
+    color: '#FFF',
     textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });
