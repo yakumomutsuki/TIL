@@ -52,5 +52,14 @@ exports[`renders correctly 1`] = `
       ADD
     </Text>
   </View>
+  <RCTScrollView
+    style={
+      Object {
+        "backgroundColor": "#DDD",
+      }
+    }
+  >
+    <View />
+  </RCTScrollView>
 </View>
 `;

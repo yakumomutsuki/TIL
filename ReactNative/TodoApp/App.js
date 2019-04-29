@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {
   Platform,
   StyleSheet,
+  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
@@ -42,6 +43,16 @@ export default class App extends Component {
         >
           <Text style={styles.addButtonText}>ADD</Text>
         </TouchableOpacity>
+        <ScrollView style={styles.scrollView}>
+            {
+                this.state.todos.map((todo, index) => (
+                    <View key={todo+index} style={styles.todoContainer}>
+                        <Text>{todo}</Text>
+                    </View>
+
+                ))
+            }
+        </ScrollView>
       </View>
     );
   }
@@ -65,5 +76,12 @@ const styles = StyleSheet.create({
   addButtonText: {
     color: '#FFF',
     textAlign: 'center',
+  },
+  scrollView: {
+    backgroundColor : '#DDD',
+  },
+  todoContainer :{
+    backgroundColor : '#FFF',
+    padding :10,
   },
 });
