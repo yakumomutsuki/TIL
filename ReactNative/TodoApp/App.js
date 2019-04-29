@@ -24,7 +24,7 @@ export default class App extends Component {
   onPressAdd(){
     const { newTodo } = this.state;
     this.setState({
-        newTodo : newTodo,
+        newTodo : '',
         todos : [newTodo, ...this.state.todos]
     })
   }
