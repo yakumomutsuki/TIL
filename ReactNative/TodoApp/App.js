@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-
+import { TodoList } from './src/components/atoms/TodoList'
 
 export default class App extends Component {
   state = {
@@ -29,6 +29,12 @@ export default class App extends Component {
     })
   }
 
+  onPressDelete(index){
+    this.setState({
+      todos : this.state.todos.filter((todo, i) => i !== index)
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -43,16 +49,10 @@ export default class App extends Component {
         >
           <Text style={styles.addButtonText}>ADD</Text>
         </TouchableOpacity>
-        <ScrollView style={styles.scrollView}>
-            {
-                this.state.todos.map((todo, index) => (
-                    <View key={todo+index} style={styles.todoContainer}>
-                        <Text>{todo}</Text>
-                    </View>
-
-                ))
-            }
-        </ScrollView>
+        <TodoList 
+          todos={ this.state.todos } 
+          onPressDelete={ (index) => this.onPressDelete(index)}
+          />
       </View>
     );
   }
@@ -76,12 +76,5 @@ const styles = StyleSheet.create({
   addButtonText: {
     color: '#FFF',
     textAlign: 'center',
-  },
-  scrollView: {
-    backgroundColor : '#DDD',
-  },
-  todoContainer :{
-    backgroundColor : '#FFF',
-    padding :10,
   },
 });
