@@ -1,0 +1,35 @@
+#input-area-regist {
+    cursor: pointer;
+}
+
+#input-area-regist span {
+    margin: 0 1rem;
+}
+
+#input-area-clear {
+    cursor: pointer;
+}
+
+#input-area-clear span {
+    margin: 0 1rem;
+}
+
+.container .input-area {
+    margin: 1rem;
+}
+
+.container .input-area label {
+    margin: 0 1rem;
+}
+
+.fa-check:before {
+    color: green;
+}
+
+#todo-container .row .delete {
+    cursor: pointer;
+}
+
+#todo-container .row .delete span {
+        margin: 0 1rem;
+}
