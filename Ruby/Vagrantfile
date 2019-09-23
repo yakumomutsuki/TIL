@@ -70,14 +70,19 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
-    sudo yum remove ruby
-    sudo yum install -y git
+    if ! [ -e /home/vagrant/.setup ]
+    then
+      sudo yum remove ruby
+      sudo yum install -y git
 
-    # install packages by ruby
-    sudo yum install -y openssl-devel readline-devel zlib-devel
+      # install packages by ruby
+      sudo yum install -y openssl-devel readline-devel zlib-devel
     
-    # install SQLite / Node.js
-    sudo yum install -y sqlite-devel epel-release nodejs
+      # install SQLite / Node.js
+      sudo yum install -y sqlite-devel epel-release nodejs
+    fi
+
+    touch /home/vagrant/.setup
   SHELL
   
   # install rbenv
